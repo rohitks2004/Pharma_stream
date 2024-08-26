@@ -1,5 +1,28 @@
 const Dealer = require('../models/dealerModel');
 
+
+exports.login = async(req,res)=>{
+  const {email ,password} = req.body;
+  
+  const dealer = await Dealer.findOne({email});
+
+  try{
+    if(!dealer){
+      return res.status(404).json({message:"user not found"});
+    }
+    const isMatch = bcrypt.compare(password,dealer.password);
+    if(!isMatch){
+      return res.status(400).json({message:"invalid password"});
+    }
+
+    const token = jwt.sign({email:dealer.email,userType:"dealer"},'secret_token',{expiresIn:'24h'});
+    res.status(200).json({userType:"dealer",token});
+  }
+  catch(e){
+    console.log(e);
+  }
+}
+
 exports.createDealer = async (req, res) => {
   try {
     const newDealer = new Dealer(req.body);
