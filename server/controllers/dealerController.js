@@ -1,6 +1,7 @@
 const Dealer = require('../models/dealerModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const mongoose=require('mongoose')
 
 async function createDealerDatabase(dealerId) {
   try {
