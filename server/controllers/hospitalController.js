@@ -24,6 +24,28 @@ async function createHospitalDatabase(hospitalId) {
   }
 }
 
+
+exports.login = async(req,res)=>{
+  const {email ,password} = req.body;
+  
+  const hospital = await Hospital.findOne({email});
+
+  try{
+    if(!hospital){
+      return res.status(404).json({message:"user not found"});
+    }
+    const isMatch = bcrypt.compare(password,hospital.password);
+    if(!isMatch){
+      return res.status(400).json({message:"invalid password"});
+    }
+
+    const token = jwt.sign({email:hospital.email,userType:"hospital"},'secret_token',{expiresIn:'24h'});
+    res.status(200).json({userType:"hospital",token});
+  }
+  catch(e){
+    console.log(e);
+  }
+}
 exports.createHospital = async (req, res) => {
   try {
     const { name, address, email, password, phoneno } = req.body;

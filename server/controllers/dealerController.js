@@ -1,31 +1,5 @@
 const Dealer = require('../models/dealerModel');
 
-const mongoose = require('mongoose');
-
-async function createDealerDatabase(dealerId) {
-  try {
-    const dealerDBName = `dealer_${dealerId}`;
-    const dealerDB = await mongoose.createConnection(`mongodb+srv://pharma:stream@project-sre.jnie5.mongodb.net/${dealerDBName}`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    // Check if the connection was successful
-    dealerDB.on('connected', () => {
-      console.log(`Connected to ${dealerDBName} database`);
-    });
-
-    dealerDB.on('error', (err) => {
-      console.error(`Error connecting to ${dealerDBName} database:`, err);
-    });
-
-    return dealerDB;
-  } catch (err) {
-    console.error('Error creating dealer database:', err);
-    throw err;
-  }
-}
-
 exports.createDealer = async (req, res) => {
   try {
     const { enterpriseName, address, email, password, phoneno } = req.body;

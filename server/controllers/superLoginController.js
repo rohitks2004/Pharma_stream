@@ -1,4 +1,28 @@
 const SuperLogin = require('../models/superLoginModel');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+exports.login = async(req,res)=>{
+  const {email ,password} = req.body;
+  
+  const superLogin = await SuperLogin.findOne({email});
+
+  try{
+    if(!superLogin){
+      return res.status(404).json({message:"user not found"});
+    }
+    const isMatch = bcrypt.compare(password,superLogin.password);
+    if(!isMatch){
+      return res.status(400).json({message:"invalid password"});
+    }
+
+    const token = jwt.sign({email:superLogin.email,userType:"superAdmin"},'secret_token',{expiresIn:'24h'});
+    res.status(200).json({userType:"superAdmin",token});
+  }
+  catch(e){
+    console.log(e);
+  }
+}
 
 exports.createSuperUser = async (req, res) => {
   try {
