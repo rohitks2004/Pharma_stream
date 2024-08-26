@@ -1,5 +1,6 @@
 const Dealer = require('../models/dealerModel');
-
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 exports.login = async(req,res)=>{
   const {email ,password} = req.body;

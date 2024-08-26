@@ -1,5 +1,6 @@
 const Hospital = require('../models/hospitalModel');
-
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 exports.login = async(req,res)=>{
   const {email ,password} = req.body;
