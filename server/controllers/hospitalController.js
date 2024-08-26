@@ -1,5 +1,7 @@
 const Hospital = require('../models/hospitalModel');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 async function createHospitalDatabase(hospitalId) {
   try {
