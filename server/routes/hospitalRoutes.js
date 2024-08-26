@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const hospitalController = require('../controllers/hospitalController');
+// const superLoginController=require('../controllers/superLoginController')
 
 
 router.post('/login',hospitalController.login);
