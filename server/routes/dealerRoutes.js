@@ -3,7 +3,7 @@ const router = express.Router();
 const dealerController = require('../controllers/dealerController');
 
 
-router.post('/login',superLoginController.login);
+router.post('/login',dealerController.login);
 router.post('/create', dealerController.createDealer);
 router.get('/:id', dealerController.getDealer);
 
