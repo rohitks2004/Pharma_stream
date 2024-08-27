@@ -2,6 +2,7 @@ const Hospital = require('../models/hospitalModel');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const connectHospitalDb = require('../config/hospitaldb');
 
 async function createHospitalDatabase(hospitalId) {
   try {
@@ -27,27 +28,37 @@ async function createHospitalDatabase(hospitalId) {
 }
 
 
-exports.login = async(req,res)=>{
-  const {email ,password} = req.body;
-  
-  const hospital = await Hospital.findOne({email});
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
 
-  try{
-    if(!hospital){
-      return res.status(404).json({message:"user not found"});
-    }
-    const isMatch = bcrypt.compare(password,hospital.password);
-    if(!isMatch){
-      return res.status(400).json({message:"invalid password"});
+  try {
+    const hospital = await Hospital.findOne({ email });
+
+    if (!hospital) {
+      return res.status(404).json({ message: "User not found" });
     }
 
-    const token = jwt.sign({email:hospital.email,userType:"hospital"},'secret_token',{expiresIn:'24h'});
-    res.status(200).json({userType:"hospital",token});
+    const isMatch = await bcrypt.compare(password, hospital.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid password" });
+    }
+
+    const token = jwt.sign(
+      { email: hospital.email, userType: "hospital" },
+      'secret_token', 
+      { expiresIn: '24h' }
+    );
+
+    // Connect to the hospital-specific database
+    await connectHospitalDb(hospital.name);
+
+    res.status(200).json({ userType: "hospital", token });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "Server error" });
   }
-  catch(e){
-    console.log(e);
-  }
-}
+};
+
 exports.createHospital = async (req, res) => {
   try {
     const { name, address, email, password, phoneno } = req.body;

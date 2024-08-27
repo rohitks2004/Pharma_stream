@@ -2,6 +2,7 @@ const Dealer = require('../models/dealerModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const mongoose=require('mongoose')
+const connectDealerDb=require("../config/dealerdb")
 
 async function createDealerDatabase(dealerId) {
   try {
@@ -40,6 +41,8 @@ exports.login = async(req,res)=>{
     if(!isMatch){
       return res.status(400).json({message:"invalid password"});
     }
+    const dealername=dealer. enterpriseName;
+    await  connectDealerDb(dealername); 
 
     const token = jwt.sign({email:dealer.email,userType:"dealer"},'secret_token',{expiresIn:'24h'});
     res.status(200).json({userType:"dealer",token});
