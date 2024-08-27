@@ -1,6 +1,8 @@
 @import './base.css';
 @import './index.css';
 @import './login-signup.css';
+
+@import './sideBar.css';
 /* @media (max-width: 720px) {
   
 }

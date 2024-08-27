@@ -1,0 +1,139 @@
+.sidebar {
+    width: 200px; /* Reduced width */
+    background-color: #2e3b4e;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 10px 15px;
+    align-items: flex-start; /* Align items to the left */
+}
+
+.sidebar-item.orders, /* Class to target Orders */
+.sidebar-item.dealer { /* Class to target Dealer */
+    border-bottom: 1px solid #7cc576; /* Add a line below these items */
+    width: calc(100% + 30px); /* Extend the border width */
+    margin-left: -15px; /* Adjust position to match padding */
+}
+
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.logo i {
+    font-size: 20px; /* Adjusted icon size */
+    margin-right: 8px; /* Reduced margin */
+}
+
+.logo span {
+    font-size: 16px; /* Adjusted text size */
+    font-weight: bold;
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profile-img {
+    width: 35px; /* Adjusted image size */
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 8px; /* Reduced margin */
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align profile info to the left */
+}
+
+.profile-name {
+    font-weight: bold;
+}
+
+.profile-role {
+    font-size: 12px;
+    color: #7cc576;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure full width for items */
+}
+
+.sidebar-item {
+    padding: 8px 0; /* Adjusted padding */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the left */
+    cursor: pointer;
+    width: 100%; /* Ensure full width */
+}
+
+.sidebar-item i {
+    margin-right: 8px; /* Reduced margin */
+    font-size: 14px; /* Adjusted icon size */
+}
+
+.sidebar-item:hover {
+    background-color: #1c2a3a;
+    border-radius: 3px; /* Adjusted border-radius */
+    padding-left: 8px;
+    transition: 0.3s ease;
+}
+
+.submenu {
+    padding-left: 15px; /* Adjusted padding */
+    margin-top: 3px; /* Adjusted margin */
+    width: 100%; /* Ensure full width */
+}
+
+.submenu li {
+    padding: 5px 0;
+    font-size: 13px; /* Adjusted font size */
+    cursor: pointer;
+}
+
+.submenu li:hover {
+    color: #7cc576;
+}
+
+.notification-dot {
+    background-color: red;
+    width: 8px; /* Adjusted dot size */
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.sidebar-footer {
+    font-size: 12px;
+    color: #a4a6b3;
+    text-align: left; /* Align text to the left */
+    margin-top: 20px; /* Optional margin above the footer */
+    margin-top: auto; /* Pushes footer to the bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sidebar-footer span {
+    margin-bottom: 5px; /* Spacing between footer elements */
+}
