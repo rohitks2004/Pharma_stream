@@ -4,6 +4,8 @@ require('dotenv').config()
 const superLoginRoutes = require('./routes/superLoginRoutes');
 const hospitalRoutes = require('./routes/hospitalRoutes');
 const dealerRoutes = require('./routes/dealerRoutes');
+const connectDealerDb=require("./config/dealerdb.js")
+const connectHospitalDB=require("./config/hospitaldb.js")
 
 const app = express();
 
