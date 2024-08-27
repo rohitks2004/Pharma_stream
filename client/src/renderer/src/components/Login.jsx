@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { login } from "../redux/userSlice";
 
@@ -17,7 +17,6 @@ const Login = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       // Perform login logic here
-      console.log("Login:", { email, password });
       dispatch(login(
         {
           "userType": "superAdmin",

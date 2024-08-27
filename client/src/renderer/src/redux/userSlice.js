@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name:"userToken",
     initialState:{
-        user:null
+        user:{
+            "userType": "superAdmin",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvaGl0QG1haWwuY29tIiwidXNlclR5cGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzI0NzY5ODE3LCJleHAiOjE3MjQ4NTYyMTd9.h2i_As8cxQliG8jxF613-oxkEJsjdF0fmuHtgoHLIt4"
+        }
     },
     reducers:{
         login:(state,action)=>{
