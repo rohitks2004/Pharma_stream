@@ -1,10 +1,11 @@
+import Login from "./components/Login"
 
 function App() {
   const ipcHandle = () => window.electron.ipcRenderer.send('ping')
 
   return (
     <>
-      <h1>Hello world</h1>
+      <Login/>
     </>
   )
 }
