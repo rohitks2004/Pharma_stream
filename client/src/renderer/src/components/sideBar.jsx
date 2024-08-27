@@ -10,15 +10,12 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <div className="logo">
-          <i className="fas fa-shopping-cart"></i>
-          <span>MedMeet</span>
-        </div>
+          <span>Pharma Stream</span>
       </div>
       <div className="sidebar-profile">
         <img src="logo.jpg" alt="Profile" className="profile-img" />
         <div className="profile-info">
-          <span className="profile-name">MedMeet</span>
+          <span className="profile-name">Pharma Stream</span>
           <span className="profile-role">Admin</span>
         </div>
       </div>
@@ -66,20 +63,18 @@ const Sidebar = () => {
             <li>Pending Orders</li>
           </ul>
         )}
+        <hr/>
         <li className="sidebar-item">
           <i className="fas fa-bell"></i> Notifications <span className="notification-dot"></span>
         </li>
         <li className="sidebar-item">
           <i className="fas fa-user"></i> Dealer
-        </li>
+        </li>        
+        <hr/>
         <li className="sidebar-item">
           <i className="fas fa-life-ring"></i> Get Technical Help
         </li>
       </ul>
-      <div className="sidebar-footer">
-        <span>Powered by MedMeet© 2024</span>
-        <span>v1.12</span>
-      </div>
     </div>
   );
 };

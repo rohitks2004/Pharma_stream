@@ -1,7 +1,7 @@
 .sidebar {
-    width: 200px; /* Reduced width */
-    background-color: #2e3b4e;
-    color: #fff;
+    width: 300px; /* Reduced width */
+    background-color: var(--emerald);
+    color: var(--white);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,8 @@
     left: 0;
     top: 0;
     padding: 10px 15px;
-    align-items: flex-start; /* Align items to the left */
+    align-items: flex-start;
+    transition: 0.3s;
 }
 
 .sidebar-item.orders, /* Class to target Orders */
@@ -25,28 +26,14 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.logo i {
-    font-size: 20px; /* Adjusted icon size */
-    margin-right: 8px; /* Reduced margin */
-}
-
-.logo span {
-    font-size: 16px; /* Adjusted text size */
+    font-size: 32px;
     font-weight: bold;
 }
 
 .sidebar-profile {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin: 16px 8px;
 }
 
 .profile-img {
@@ -64,27 +51,37 @@
 
 .profile-name {
     font-weight: bold;
+    font-size: 20px;
 }
 
 .profile-role {
-    font-size: 12px;
-    color: #7cc576;
+    font-size: 16px;
+    color: var(--green);
 }
 
 .sidebar-menu {
     list-style: none;
+    border: 2px solid black;
     padding: 0;
     margin: 0;
-    width: 100%; /* Ensure full width for items */
+    width: 100%;
+    hr{
+        margin: 12px 0;
+        border: 1px solid var(--white) ;
+    }
 }
 
 .sidebar-item {
-    padding: 8px 0; /* Adjusted padding */
+    padding: 12px 0; 
+    margin: 2px 0;
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Align items to the left */
     cursor: pointer;
     width: 100%; /* Ensure full width */
+    font-size: 16px;
+    font-weight: 500;
+    
 }
 
 .sidebar-item i {
@@ -93,21 +90,24 @@
 }
 
 .sidebar-item:hover {
-    background-color: #1c2a3a;
-    border-radius: 3px; /* Adjusted border-radius */
+    /* color: var(--black);
+    background-color: var(--mint);
+    border-radius: 3px; 
     padding-left: 8px;
-    transition: 0.3s ease;
+    transition: 0.3s ease; */
+    color: var(--green);
 }
 
 .submenu {
-    padding-left: 15px; /* Adjusted padding */
-    margin-top: 3px; /* Adjusted margin */
-    width: 100%; /* Ensure full width */
+    background-color: var(--black);
+    width: 90%; 
+    padding-left: 40px; 
+    list-style: none;
 }
 
 .submenu li {
-    padding: 5px 0;
-    font-size: 13px; /* Adjusted font size */
+    padding: 8px 0;
+    font-size: 16px; 
     cursor: pointer;
 }
 
