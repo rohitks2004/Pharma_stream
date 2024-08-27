@@ -5,8 +5,10 @@
     left: 38vw;
     background-color: var(--white);
     border-radius: 25px;
-    width: 20vmax;
-    height: 35vmin;
+    width: 20vw;
+    min-width: 240px;
+    min-height: 280px;
+    height: 35vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
