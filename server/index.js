@@ -6,6 +6,7 @@ const hospitalRoutes = require('./routes/hospitalRoutes');
 const dealerRoutes = require('./routes/dealerRoutes');
 const connectDealerDb=require("./config/dealerdb.js")
 const connectHospitalDB=require("./config/hospitaldb.js")
+const hospRoutes=require('./routes/hospRoutes.js')
 
 const app = express();
 

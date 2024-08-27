@@ -7,4 +7,4 @@ const dealersSchema = new mongoose.Schema({
     phoneNo: { type: String, required: true }
 });
 
-module.exports = mongoose.model('Dealer', dealersSchema);
+module.exports = mongoose.model('hospDealer', dealersSchema);
