@@ -1,11 +1,11 @@
-import LoginSignup from "./components/LoginSignup"
+import Login from "./components/Login"
 
 function App() {
   const ipcHandle = () => window.electron.ipcRenderer.send('ping')
 
   return (
     <>
-      <LoginSignup/>
+      <Login/>
     </>
   )
 }

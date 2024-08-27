@@ -8,7 +8,8 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1920,
     height: 1080,
-    show: false,
+    // show: false,
+    // frame:false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {

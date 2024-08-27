@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --ev-c-white: #ffffff;
   --ev-c-white-soft: #f8f8f8;
   --ev-c-white-mute: #f2f2f2;
@@ -21,8 +21,8 @@
   --ev-button-alt-hover-border: transparent;
   --ev-button-alt-hover-text: var(--ev-c-text-1);
   --ev-button-alt-hover-bg: var(--ev-c-gray-2);
-}
-
+} */
+/* 
 :root {
   --color-background: var(--ev-c-black);
   --color-background-soft: var(--ev-c-black-soft);
@@ -32,5 +32,18 @@
   --secondary: var(--color-background-soft);
   --tertiary: var(--color-background-mute);
   --fourth:#f122c8;
-}
+} */
 
+:root{
+  --black:#1d242e;
+
+  --white:#f8fbff;
+  --yellow:#ffeeb4;
+  --mint:#aff9c8;
+
+  --green:#00d37f;
+  --blue:#109cf1;
+
+  --emerald:#014751;
+  --dark-green:#0f282f;
+}
