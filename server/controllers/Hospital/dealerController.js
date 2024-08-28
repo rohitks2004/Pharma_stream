@@ -1,7 +1,12 @@
-const Dealer = require('../../models/HospitalDB/dealerModel');
+const connect = require('./connection');
+const createDealerModel = require('../../models/HospitalDB/dealerModel');
 
 exports.createDealer = async (req, res) => {
     try {
+        const { hospitalName } = req.params;
+        const connection = await connect(hospitalName);
+        const Dealer = createDealerModel(connection);
+
         const newDealer = new Dealer(req.body);
         const savedDealer = await newDealer.save();
         res.status(201).json(savedDealer);
@@ -12,6 +17,10 @@ exports.createDealer = async (req, res) => {
 
 exports.getDealers = async (req, res) => {
     try {
+        const { hospitalName } = req.params;
+        const connection = await connect(hospitalName);
+        const Dealer = createDealerModel(connection);
+
         const dealers = await Dealer.find();
         res.status(200).json(dealers);
     } catch (err) {
@@ -21,6 +30,10 @@ exports.getDealers = async (req, res) => {
 
 exports.updateDealer = async (req, res) => {
     try {
+        const { hospitalName } = req.params;
+        const connection = await connect(hospitalName);
+        const Dealer = createDealerModel(connection);
+
         const updatedDealer = await Dealer.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.status(200).json(updatedDealer);
     } catch (err) {
@@ -30,6 +43,10 @@ exports.updateDealer = async (req, res) => {
 
 exports.deleteDealer = async (req, res) => {
     try {
+        const { hospitalName } = req.params;
+        const connection = await connect(hospitalName);
+        const Dealer = createDealerModel(connection);
+
         await Dealer.findByIdAndDelete(req.params.id);
         res.status(204).json({ message: "Dealer deleted" });
     } catch (err) {

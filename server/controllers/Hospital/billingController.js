@@ -1,10 +1,10 @@
-const connectHospitalDb = require('../../config/hospitaldb');
 const createBillingModel = require('../../models/HospitalDB/billingModel');
+const connect=require("./connection");
 
 exports.createBillingRecord = async (req, res) => {
     try {
-        const { hospitalName } = req.params;
-        const connection = await connectHospitalDb(hospitalName);
+        const { hospitalName } = req.params; 
+        const connection = await connect(hospitalName);
         const Billing = createBillingModel(connection);
         const newBillingRecord = new Billing(req.body);
         const savedBillingRecord = await newBillingRecord.save();
@@ -17,7 +17,7 @@ exports.createBillingRecord = async (req, res) => {
 exports.getBillingRecords = async (req, res) => {
     try {
         const { hospitalName } = req.params; 
-        const connection = await connectHospitalDb(hospitalName);
+        const connection = await connect(hospitalName);
         const Billing = createBillingModel(connection);
 
         const billingRecords = await Billing.find();
@@ -30,7 +30,7 @@ exports.getBillingRecords = async (req, res) => {
 exports.updateBillingRecord = async (req, res) => {
     try {
         const { hospitalName } = req.params; 
-        const connection = await connectHospitalDb(hospitalName);
+        const connection = await connect(hospitalName);
         const Billing = createBillingModel(connection);
 
         const updatedBillingRecord = await Billing.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -42,8 +42,9 @@ exports.updateBillingRecord = async (req, res) => {
 
 exports.deleteBillingRecord = async (req, res) => {
     try {
+    
         const { hospitalName } = req.params; 
-        const connection = await connectHospitalDb(hospitalName);
+        const connection = await connect(hospitalName);
         const Billing = createBillingModel(connection);
 
         await Billing.findByIdAndDelete(req.params.id);
