@@ -10,4 +10,4 @@ const inventorySchema = new mongoose.Schema({
   quantity: { type: Number, required: true },
 });
 
-module.exports = mongoose.model('Inventory', inventorySchema);
+module.exports = (connection) => connection.model('dealerinventory', inventorySchema);

@@ -17,4 +17,4 @@ const orderSchema = new mongoose.Schema({
   price: { type: Number, required: true },
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = (connection) => connection.model('dealerorder', orderSchema);
