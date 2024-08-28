@@ -1,39 +1,23 @@
 import React from 'react'
+import OverviewCard from '../components/OverviewCard'
+import Header from '../components/Header'
 
 const Dashboard = () => {
+    const overviewData = [
+        {className:"inventory-overview",icon:"",parameter:"Inventory Status",status:"Good",detail:"Veiw Detailed Report "},
+        {className:"available-overview",icon:"",parameter:"Available Medicines",status:151,detail:"Visit Inventory"},
+        {className:"shortage-overview",icon:"",parameter:"Medicine Shortage",status:2,detail:"Resolve Now"}
+    ]
   return (
     <div className='dashboard'>
-        <div className="dashboard-head">
-            <h1>Dashboard</h1>
-            <p>A quick data overview of inventory.</p>
-        </div>
+        <Header heading={"Dashboard"} desc={"A quick data overview of inventory."}/>
         <div className="overview-container">
-            <div className="overview inventory-overview">
-                {/* <icon */}
-                <h1> Good </h1>
-                <h2>Inventory Status</h2>
-                <div>
-                    <p>veiw detailed report </p>
-                </div>
-            </div>
-            <div className="overview available-overview">
-                {/* <icon */}
-                <h1> 151 </h1>
-                <h2>Available Medicines</h2>
-                <div>
-                    <p>veiw detailed report </p>
-                </div>
-            </div>
-            <div className='overview shortage-overview'>
-                {/* <icon */}
-                <h1> 02 </h1>
-                <h2>Medicine Shortage</h2>
-                <div>
-                    <p>veiw detailed report </p>
-                </div>
-            </div>
+            {
+                overviewData.map((overview,key)=>{
+                    return <OverviewCard overview={overview} key={key}/>
+                })
+            }
         </div>
-
     </div>
   )
 }

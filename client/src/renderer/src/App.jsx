@@ -3,6 +3,7 @@ import Sidebar from "./components/sideBar";
 import {  Route, Routes, Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Dashboard from "./pages/Dashboard";
+import Inventory from "./pages/Inventory";
 
 function App() {
   const user = useSelector((state) => state.userSlice.user);
@@ -27,7 +28,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/report" element={<h1>report</h1>} />
         <Route path="/orders" element={<h1>orders</h1>} />
-        <Route path="/inventory" element={<h1>inventory</h1>} />
+        <Route path="/inventory" element={ <Inventory/> } />
         <Route path="/billing" element={<h1>billing</h1>} />
         <Route path="/notifications" element={<h1>Notifications </h1>} />
         <Route path="/dealers" element={<h1>Dealers</h1>} />

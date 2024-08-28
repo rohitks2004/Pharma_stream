@@ -37,9 +37,9 @@
 :root{
   --black:#1d242e;
 
-  --white:#f8fbff;
+  --white:#f7f7f7;
   --yellow:#ffeeb4;
-  --mint:#aff9c8;
+  --mint:rgb(220, 250, 230);
 
   --green:#00d37f;
   --blue:#109cf1;
