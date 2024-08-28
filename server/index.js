@@ -7,6 +7,9 @@ const dealerRoutes = require('./routes/dealerRoutes');
 const connectDealerDb=require("./config/dealerdb.js")
 const connectHospitalDB=require("./config/hospitaldb.js")
 const hospRoutes=require("./routes/hospRoutes.js");
+const dealerRoutes = require('./routes/dealRoutes.js');
+
+// Use the dealer routes
 
 
 const app = express();
@@ -25,6 +28,7 @@ app.use('/api/superlogin', superLoginRoutes);
 app.use('/api/hospital', hospitalRoutes);
 app.use('/api/dealer', dealerRoutes);
 app.use('/api/hosp', hospRoutes);
+app.use('/api/deal', dealerRoutes);
 
 const PORT = process.env.PORT || 5000;
 
