@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import {sidebarMenus} from '../constants/sidebarMenus'
+import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState('');
-
+  const  user  = useSelector((state)=>state.userSlice.user);
+  const role =user.userType;
   const toggleMenu = (menu) => {
     setActiveMenu(activeMenu === menu ? '' : menu);
   };
+
+  const renderSubMenu=(submenu)=>{
+    return(
+      <ul className="submenu">
+        {submenu.map((item,index)=>(
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    )
+  }
 
   return (
     <div className="sidebar">
@@ -16,64 +29,25 @@ const Sidebar = () => {
         <img src="logo.jpg" alt="Profile" className="profile-img" />
         <div className="profile-info">
           <span className="profile-name">Pharma Stream</span>
-          <span className="profile-role">Admin</span>
+          <span className="profile-role">{role}</span>
         </div>
       </div>
       <ul className="sidebar-menu">
-        <li className="sidebar-item active">
-          <i className="fas fa-tachometer-alt"></i> Dashboard
-        </li>
-        <li className="sidebar-item" onClick={() => toggleMenu('billing')}>
-          <i className="fas fa-file-invoice-dollar"></i> Billing
-          <i className={`fas fa-chevron-${activeMenu === 'billing' ? 'up' : 'down'}`}></i>
-        </li>
-        {activeMenu === 'billing' && (
-          <ul className="submenu">
-            <li>Invoices</li>
-            <li>Payments</li>
-          </ul>
-        )}
-        <li className="sidebar-item" onClick={() => toggleMenu('inventory')}>
-          <i className="fas fa-box"></i> Inventory
-          <i className={`fas fa-chevron-${activeMenu === 'inventory' ? 'up' : 'down'}`}></i>
-        </li>
-        {activeMenu === 'inventory' && (
-          <ul className="submenu">
-            <li>Medicines</li>
-            <li>Medicine Groups</li>
-          </ul>
-        )}
-        <li className="sidebar-item" onClick={() => toggleMenu('reports')}>
-          <i className="fas fa-chart-line"></i> Reports
-          <i className={`fas fa-chevron-${activeMenu === 'reports' ? 'up' : 'down'}`}></i>
-        </li>
-        {activeMenu === 'reports' && (
-          <ul className="submenu">
-            <li>Payment Reports</li>
-            <li>Sales Reports</li>
-          </ul>
-        )}
-        <li className="sidebar-item" onClick={() => toggleMenu('orders')}>
-          <i className="fas fa-shopping-cart"></i> Orders
-          <i className={`fas fa-chevron-${activeMenu === 'orders' ? 'up' : 'down'}`}></i>
-        </li>
-        {activeMenu === 'orders' && (
-          <ul className="submenu">
-            <li>Order History</li>
-            <li>Pending Orders</li>
-          </ul>
-        )}
-        <hr/>
-        <li className="sidebar-item">
-          <i className="fas fa-bell"></i> Notifications <span className="notification-dot"></span>
-        </li>
-        <li className="sidebar-item">
-          <i className="fas fa-user"></i> Dealer
-        </li>        
-        <hr/>
-        <li className="sidebar-item">
-          <i className="fas fa-life-ring"></i> Get Technical Help
-        </li>
+        {sidebarMenus[role]?.map((item,index)=>(
+         <>
+         <li 
+          key={index}
+          className='sidebar-item'
+          onClick={()=>toggleMenu(item.label.toLowerCase())} >
+            <i className={item.icon} />
+            {item.label}
+            {item.submenu &&(
+              <i className={`fas fa-chevron-${activeMenu===item.label.toLowerCase()?'up':'down'}`}></i>
+            )}
+            </li>
+            {activeMenu===item.label.toLowerCase() && item.submenu && renderSubMenu(item.submenu)}
+        </>
+        ))}
       </ul>
     </div>
   );
