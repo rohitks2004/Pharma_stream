@@ -20,7 +20,7 @@ const Sidebar = () => {
         </div>
       </div>
       <ul className="sidebar-menu">
-        <li className="sidebar-item">
+        <li className="sidebar-item active">
           <i className="fas fa-tachometer-alt"></i> Dashboard
         </li>
         <li className="sidebar-item" onClick={() => toggleMenu('billing')}>
