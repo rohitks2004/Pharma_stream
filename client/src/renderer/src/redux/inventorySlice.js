@@ -1,7 +1,5 @@
-// inventorySlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-// Initial state with some default medicines
 const initialState = {
   medicines: [
     {
@@ -34,7 +32,6 @@ const inventorySlice = createSlice({
   initialState,
   reducers: {
     addMedicine: (state, action) => {
-      // Add new medicine to the inventory
       state.medicines.push({
         ...action.payload,
         cost: parseFloat(action.payload.cost),
@@ -42,7 +39,6 @@ const inventorySlice = createSlice({
       });
     },
     deleteMedicine: (state, action) => {
-      // Delete a medicine by name or medicineId
       state.medicines = state.medicines.filter(
         (medicine) =>
           medicine.name.toLowerCase() !== action.payload.toLowerCase() &&
@@ -52,6 +48,5 @@ const inventorySlice = createSlice({
   },
 });
 
-// Export actions and reducer
 export const { addMedicine, deleteMedicine } = inventorySlice.actions;
 export default inventorySlice.reducer;
