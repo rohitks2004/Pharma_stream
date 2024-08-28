@@ -111,6 +111,13 @@
     padding-left: 40px;
     list-style: none;
     background-color: var(--black);
+    /* top:100%;
+    left:0;
+    z-index:10; */
+    display: block;
+    transition: 0.3s;
+    overflow:hidden;
+    position:relative;
 }
 
 .submenu li {
