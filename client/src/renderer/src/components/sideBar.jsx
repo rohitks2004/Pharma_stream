@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {sidebarMenus} from '../constants/sidebarMenus'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState('');
@@ -40,7 +41,9 @@ const Sidebar = () => {
           className='sidebar-item'
           onClick={()=>toggleMenu(item.label.toLowerCase())} >
             <i className={item.icon} />
+            <Link to={item.label.toLowerCase()}>
             {item.label}
+            </Link>
             {item.submenu &&(
               <i className={`fas fa-chevron-${activeMenu===item.label.toLowerCase()?'up':'down'}`}></i>
             )}

@@ -26,12 +26,13 @@ function App() {
       <Route element={<Layout/>}>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard/>} />
-        <Route path="/report" element={<h1>report</h1>} />
+        <Route path="/reports" element={<h1>report</h1>} />
         <Route path="/orders" element={<h1>orders</h1>} />
         <Route path="/inventory" element={ <Inventory/> } />
         <Route path="/billing" element={<h1>billing</h1>} />
         <Route path="/notifications" element={<h1>Notifications </h1>} />
         <Route path="/dealers" element={<h1>Dealers</h1>} />
+        <Route path="/hospitals" element={<h1>Hospital</h1>} />
       </Route>
       <Route path="/Login" element={<Login />} />
       {/* <Route path="/sideBar" element={user ? <Sidebar /> : <Navigate to="/Login" />} /> */}
