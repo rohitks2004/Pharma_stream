@@ -8,4 +8,4 @@ const hospitalSchema = new mongoose.Schema({
   email: { type: String, required: true },
 });
 
-module.exports = mongoose.model('Hospital', hospitalSchema);
+module.exports = mongoose.model('DealerHosp', hospitalSchema);
