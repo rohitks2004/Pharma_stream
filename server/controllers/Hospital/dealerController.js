@@ -1,13 +1,16 @@
 const connect = require('./connection');
 const createDealerModel = require('../../models/HospitalDB/dealerModel');
+const db=require("../../models/dealerModel")
 
 exports.createDealer = async (req, res) => {
     try {
         const { hospitalName } = req.params;
         const connection = await connect(hospitalName);
         const Dealer = createDealerModel(connection);
-
-        const newDealer = new Dealer(req.body);
+        const {name,address,email,phoneNo}=req.body;
+        const dealersuper= await db.findOne({email:email}).exec() //get dealer from superdb
+        const dealerId=dealersuper.dealerId;//seperate dealerid
+        const newDealer = await new Dealer({dealerId:dealerId,name,address,email,phoneNo});///store in hospitaldb
         const savedDealer = await newDealer.save();
         res.status(201).json(savedDealer);
     } catch (err) {
