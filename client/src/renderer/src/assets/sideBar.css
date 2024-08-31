@@ -9,7 +9,7 @@
     /* position: fixed;
     left: 0;
     top: 0; */
-    padding: 10px 15px 10px 0px;
+    padding: 0px 15px 10px 0px;
     align-items: flex-start;
     transition: 0.3s;
 }
@@ -24,11 +24,14 @@
 
 .sidebar-header {
     display: flex;
+    width: 100%;
+    background-color: var(--dark-green);
     align-items: center;
-    margin-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 12px;
     font-size: 32px;
     font-weight: bold;
-    padding-left: 15px;
+    padding:12px 0 12px 20px;
 }
 
 .sidebar-profile {

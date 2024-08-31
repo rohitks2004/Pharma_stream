@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import {sidebarMenus} from '../constants/sidebarMenus'
+import { VscKebabVertical } from "react-icons/vsc";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { sidebarMenus } from '../constants/sidebarMenus';
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState('');
   const  user  = useSelector((state)=>state.userSlice.user);
   const role =user.userType;
+  const [dropmenu , setDropmenu] = useState(false);
+  const handledropmenu = () => {
+    (activeMenu == true ) ? setDropmenu(false) : setDropmenu(true);
+  }
   const toggleMenu = (menu) => {
     setActiveMenu(activeMenu === menu ? '' : menu);
   };
 
+  const Dropmenu = ()=>{
+    return <div>dropmenu</div>
+  }
   const renderSubMenu=(submenu)=>{
     return(
       <ul className="submenu">
@@ -32,10 +40,14 @@ const Sidebar = () => {
           <span className="profile-name">Pharma Stream</span>
           <span className="profile-role">{role}</span>
         </div>
+        <div className="icon-div">
+        <VscKebabVertical className='icon-buttons' onClick={handledropmenu}/>
+        </div>
+        {dropmenu &&  <Dropmenu/>}
       </div>
       <ul className="sidebar-menu">
         {sidebarMenus[role]?.map((item,index)=>(
-         <>
+         <div key={index}>
          <li 
           key={index}
           className='sidebar-item'
@@ -49,7 +61,7 @@ const Sidebar = () => {
             )}
             </li>
             {activeMenu===item.label.toLowerCase() && item.submenu && renderSubMenu(item.submenu)}
-        </>
+        </div >
         ))}
       </ul>
     </div>

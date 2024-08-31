@@ -53,7 +53,6 @@ const Inventory = () => {
 
   return (
     <div className='inventory'>
-      <Header heading={'Inventory'} desc={'List of Medicines available for sales.'} />
       <div className='header-section'>
         <SearchBar totalItems={medicines} setItems={() => {}} />
         <div className='action-buttons'>

@@ -10,7 +10,6 @@ const Dashboard = () => {
     ]
   return (
     <div className='dashboard'>
-        <Header heading={"Dashboard"} desc={"A quick data overview of inventory."}/>
         <div className="overview-container">
             {
                 overviewData.map((overview,key)=>{

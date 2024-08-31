@@ -35,9 +35,14 @@
 } */
 
 :root{
+
+    /* font-weight: 100; */
+    /* font-weight: 200; */
+    /* font-weight: 300; */
+    /* font-weight: 400; */
   --black:#1d242e;
 
-  --white:#f7f7f7;
+  --white:#efefef;
   --yellow:#ffeeb4;
   --mint:rgb(220, 250, 230);
 
