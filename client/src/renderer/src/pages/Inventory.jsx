@@ -10,6 +10,7 @@ const Inventory = () => {
   const dispatch = useDispatch();
   const medicines = useSelector((state) => state.inventory.medicines);
 
+  const [filteredMedicines, setFilteredMedicines] = useState(medicines);
   const [showForm, setShowForm] = useState(false);
   const [showDeleteForm, setShowDeleteForm] = useState(false);
   const [newMedicine, setNewMedicine] = useState({
@@ -51,11 +52,24 @@ const Inventory = () => {
     setShowDeleteForm(false);
   };
 
+
+  const handleSearch = (searchTerm) => {
+    if (searchTerm === '') {
+      setFilteredMedicines(medicines);
+    } else {
+      const filteredItems = medicines.filter(item =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredMedicines(filteredItems);
+    }
+  };
+
   return (
     <div className='inventory'>
       <Header heading={'Inventory'} desc={'List of Medicines available for sales.'} />
       <div className='header-section'>
-        <SearchBar totalItems={medicines} setItems={() => {}} />
+        {/* <SearchBar totalItems={medicines} setItems={() => {}} /> */}
+        <SearchBar setItems={handleSearch}/>
         <div className='action-buttons'>
           <button className='add-item' onClick={handleAddItemClick}>
             + Add item
@@ -133,7 +147,7 @@ const Inventory = () => {
             </tr>
           </thead>
           <tbody>
-            {medicines.map((medicine, index) => (
+            {filteredMedicines.map((medicine, index) => (
               <tr key={index}>
                 <td>{medicine.name}</td>
                 <td>{medicine.medicineId}</td>
