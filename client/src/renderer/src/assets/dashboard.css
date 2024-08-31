@@ -58,8 +58,7 @@
 }
 .shortage-overview{
     div{
-        background-color: #fb3e3e;
+        background-color: var(--red);
     }
-    border: 2px solid #fb3e3e;
-    
+    border: 2px solid var(--red) ;
 }

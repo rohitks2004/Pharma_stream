@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
-import { VscKebabVertical } from "react-icons/vsc";
-import { useSelector } from 'react-redux';
+import { IoMenu } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { sidebarMenus } from '../constants/sidebarMenus';
+import { logout } from '../redux/userSlice';
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const [activeMenu, setActiveMenu] = useState('');
   const  user  = useSelector((state)=>state.userSlice.user);
   const role =user.userType;
-  const [dropmenu , setDropmenu] = useState(false);
-  const handledropmenu = () => {
-    (activeMenu == true ) ? setDropmenu(false) : setDropmenu(true);
+  const handleLogout = ()=>{
+    dispatch(logout())
   }
   const toggleMenu = (menu) => {
     setActiveMenu(activeMenu === menu ? '' : menu);
   };
-
-  const Dropmenu = ()=>{
-    return <div>dropmenu</div>
-  }
   const renderSubMenu=(submenu)=>{
     return(
       <ul className="submenu">
@@ -34,16 +31,14 @@ const Sidebar = () => {
       <div className="sidebar-header">
           <span>Pharma Stream</span>
       </div>
-      <div className="sidebar-profile">
-        <img src="logo.jpg" alt="Profile" className="profile-img" />
-        <div className="profile-info">
-          <span className="profile-name">Pharma Stream</span>
-          <span className="profile-role">{role}</span>
+      <div className="sidebar-desc">
+        <div className='sidebar-profile'>
+          <img src="logo.jpg" alt="Profile" className="profile-img" />
+          <div className="profile-info">
+            <span className="profile-name">Pharma Stream</span>
+            <span className="profile-role">{role}</span>
+          </div>
         </div>
-        <div className="icon-div">
-        <VscKebabVertical className='icon-buttons' onClick={handledropmenu}/>
-        </div>
-        {dropmenu &&  <Dropmenu/>}
       </div>
       <ul className="sidebar-menu">
         {sidebarMenus[role]?.map((item,index)=>(
@@ -64,6 +59,7 @@ const Sidebar = () => {
         </div >
         ))}
       </ul>
+      <button className='logout' onClick={handleLogout}>Logout</button>
     </div>
   );
 };
