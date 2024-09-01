@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   background-color: #f4f8f9; /* Light background color for a cleaner look */
 }
 
@@ -11,7 +10,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 70vw;
+  padding: 0px 16px;
+  /* border: 2px solid red; */
+}
+.searchbar-div{
+  /* border: 2px solid black; */
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  .search-input{
+    border-radius: 8px 0px 0px 8px;
+  }
+  .search-btn{
+    border-radius: 0px 8px 8px 0px;
+    background-color: white;
+    padding: 11.5px;
+    margin-top: .5px;
+    box-shadow:0 0 1px 0px black;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:active{
+      background-color: #e4e4e4;
+    }
+  }
 }
 
 .action-buttons {

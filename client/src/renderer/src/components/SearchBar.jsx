@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { IoSearch } from "react-icons/io5";
 const SearchBar = ({ setItems }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -8,16 +8,17 @@ const SearchBar = ({ setItems }) => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className='searchbar-div' style={{}}>
       <input
+      className='search-input'
         type="text"
         placeholder="Search..."
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}
-        style={{ padding: "10px", width: "300px", fontSize: "16px" }}
+        style={{ padding: "10px", width: "350px", fontSize: "16px" }}
       />
-      <button className="search" onClick={handleSearch}>
-        Search
+      <button className="search-btn" onClick={handleSearch}>
+      <IoSearch />
       </button>
     </div>
   );

@@ -67,7 +67,6 @@ const Inventory = () => {
   return (
     <div className='inventory'>
       <div className='header-section'>
-        {/* <SearchBar totalItems={medicines} setItems={() => {}} /> */}
         <SearchBar setItems={handleSearch}/>
         <div className='action-buttons'>
           <button className='add-item' onClick={handleAddItemClick}>
