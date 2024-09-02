@@ -1,15 +1,37 @@
 const Cart = require('../models/cartModel');
+const axios=require('axios')
 
 exports.addToCart = async (req, res) => {
     try {
-        const cart = new Cart(req.body);
+        const { startDate, endDate, drug } = req.body;
+
+        
+        const response = await axios.post('http://127.0.0.1:5500/predict', {
+            start_date: startDate,
+            end_date: endDate,
+            drug: drug
+        });
+
+        const predictions = response.data; 
+        console.log(predictions);
+       
+        
+
+        
+        const cartData = {
+            medicines: predictions.map(prediction => ({
+                medicineId: prediction.medicine_id, 
+                quantity: prediction.predicted_quantity
+            }))
+        };
+
+        const cart = new Cart(cartData);
         const savedCart = await cart.save();
         res.status(201).json(savedCart);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
-
 exports.getCart = async (req, res) => {
     try {
         const cart = await Cart.findById(req.params.id).populate('medicines.medicineId').populate('dealerPreferences');
@@ -18,6 +40,7 @@ exports.getCart = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
 
 exports.updateCart = async (req, res) => {
     try {
