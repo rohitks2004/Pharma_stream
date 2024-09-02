@@ -8,6 +8,7 @@ import Inventory from "./pages/Inventory";
 import Header from "./components/Header";
 import HeadBar from "./components/HeadBar";
 import MedicineGroups from "./pages/MedicineGroups";
+import Dealer from './pages/Dealer';
 
 function App() {
   const user = useSelector((state) => state.userSlice.user);
@@ -56,7 +57,7 @@ function App() {
         <Route path="/inventory/medicine-groups" element={<MedicineGroups />} />
         <Route path="/billing" element={<h1>Billing</h1>} />
         <Route path="/notifications" element={<h1>Notifications</h1>} />
-        <Route path="/dealers" element={<h1>Dealers</h1>} />
+        <Route path="/dealers" element={<Dealer />} />
         <Route path="/hospitals" element={<h1>Hospital</h1>} />
       </Route>
       <Route path="/login" element={<Login />} />

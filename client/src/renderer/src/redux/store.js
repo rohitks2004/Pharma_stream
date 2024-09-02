@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./userSlice";
 import inventorySlice from "./inventorySlice";
 import medicineGroupSlice from "./medicineGroupSlice";
+import dealerSlice from './dealerSlice';
 
 const store = configureStore({
     reducer: {
@@ -11,6 +12,8 @@ const store = configureStore({
         // orderSlcie:orderSlice
         inventory:inventorySlice,
         medicineGroup:medicineGroupSlice,
+        dealer: dealerSlice,
+
     }
 })
 
