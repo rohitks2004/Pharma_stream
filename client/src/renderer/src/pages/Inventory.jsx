@@ -1,15 +1,12 @@
-// Import necessary hooks and actions
 import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMedicine, deleteMedicine } from '../redux/inventorySlice'; // Import actions
-import OverviewCard from '../components/OverviewCard';
-import Header from '../components/Header';
+import { addMedicine, deleteMedicine } from '../redux/inventorySlice'; 
 import SearchBar from '../components/SearchBar';
 
 const Inventory = () => {
   const dispatch = useDispatch();
   const medicines = useSelector((state) => state.inventory.medicines);
-
   const [filteredMedicines, setFilteredMedicines] = useState(medicines);
   const [showForm, setShowForm] = useState(false);
   const [showDeleteForm, setShowDeleteForm] = useState(false);
@@ -21,37 +18,22 @@ const Inventory = () => {
   });
   const [deleteInput, setDeleteInput] = useState('');
 
-  const handleAddItemClick = () => {
-    setShowForm(true);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewMedicine({ ...newMedicine, [name]: value });
-  };
-
+  const handleAddItemClick = () => setShowForm(true);
+  const handleInputChange = (e) => setNewMedicine({ ...newMedicine, [e.target.name]: e.target.value });
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(addMedicine(newMedicine)); // Dispatch add action
+    dispatch(addMedicine(newMedicine)); 
     setNewMedicine({ name: '', medicineId: '', cost: '', quantity: '' });
     setShowForm(false);
   };
-
-  const handleDeleteButtonClick = () => {
-    setShowDeleteForm(true);
-  };
-
-  const handleDeleteInputChange = (e) => {
-    setDeleteInput(e.target.value);
-  };
-
+  const handleDeleteButtonClick = () => setShowDeleteForm(true);
+  const handleDeleteInputChange = (e) => setDeleteInput(e.target.value);
   const handleDeleteSubmit = (e) => {
     e.preventDefault();
-    dispatch(deleteMedicine(deleteInput)); // Dispatch delete action
+    dispatch(deleteMedicine(deleteInput)); 
     setDeleteInput('');
     setShowDeleteForm(false);
   };
-
 
   const handleSearch = (searchTerm) => {
     if (searchTerm === '') {
@@ -77,7 +59,7 @@ const Inventory = () => {
           </button>
         </div>
       </div>
-  
+
       {showForm && (
         <div className='add-item-form'>
           <form onSubmit={handleFormSubmit}>
@@ -117,7 +99,7 @@ const Inventory = () => {
           </form>
         </div>
       )}
-  
+
       {showDeleteForm && (
         <div className='delete-item-form'>
           <form onSubmit={handleDeleteSubmit}>
@@ -132,7 +114,7 @@ const Inventory = () => {
           </form>
         </div>
       )}
-  
+
       <div className='inventory-table'>
         <table>
           <thead>
@@ -159,9 +141,10 @@ const Inventory = () => {
           </tbody>
         </table>
       </div>
+
+      <Outlet />
     </div>
   );
-  
 };
 
 export default Inventory;

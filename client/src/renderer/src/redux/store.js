@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./userSlice";
 import inventorySlice from "./inventorySlice";
+import medicineGroupSlice from "./medicineGroupSlice";
 
 const store = configureStore({
     reducer: {
@@ -9,6 +10,7 @@ const store = configureStore({
         // cart:cartSlice,
         // orderSlcie:orderSlice
         inventory:inventorySlice,
+        medicineGroup:medicineGroupSlice,
     }
 })
 
