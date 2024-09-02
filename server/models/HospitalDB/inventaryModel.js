@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const createInventoryModel = (connection) => {
     const inventorySchema = new mongoose.Schema({
         medicineId: { type: String, required: true },
+        category:{type:String,required:true},
         name: { type: String, required: true },
         arrivalDate: { type: Date, default: Date.now },
         expiryDate: { type: Date, required: true },

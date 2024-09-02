@@ -4,7 +4,6 @@ const createHospitalModel = require('../../models/DealerDB/hospitalsModel');
 exports.createHospital = async (req, res) => {
   try {
     const { dealerName } = req.params;
-    
     const connection = await connect(dealerName);
     const Hospital = createHospitalModel(connection);
     const { hospitalId, name, address, phoneNo, email } = req.body;
