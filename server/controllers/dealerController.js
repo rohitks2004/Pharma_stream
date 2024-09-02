@@ -63,28 +63,65 @@ exports.createDealer = async (req, res) => {
     // Create the new dealer database
     const dealerDB = await createDealerDatabase(newDealer.enterpriseName);
 
-    // Define collections in the new dealer database
-    const Inventory = dealerDB.model('Inventory', new mongoose.Schema({
-      drugName: String,
-      quantity: Number,
-      supplier: String,
-    }));
+    // // Define collections in the new dealer database
+    // const Inventory = dealerDB.model('Inventory', new mongoose.Schema({
+    //   drugName: String,
+    //   quantity: Number,
+    //   supplier: String,
+    // }));
 
-    const Orders = dealerDB.model('Orders', new mongoose.Schema({
-      orderId: String,
-      hospitalName: String,
-      drugName: String,
-      quantity: Number,
-      orderDate: Date,
-      status: String,
-    }));
+    // const Orders = dealerDB.model('Orders', new mongoose.Schema({
+    //   orderId: String,
+    //   hospitalName: String,
+    //   drugName: String,
+    //   quantity: Number,
+    //   orderDate: Date,
+    //   status: String,
+    // }));
 
-    const Hospitals = dealerDB.model('Hospitals', new mongoose.Schema({
-      hospitalId: String,
-      name: String,
-      address: String,
-      contactEmail: String,
-    }));
+    // const Hospitals = dealerDB.model('Hospitals', new mongoose.Schema({
+    //   hospitalId: String,
+    //   name: String,
+    //   address: String,
+    //   contactEmail: String,
+    // }));
+// Hospital Schema
+const Hospitals = dealerDB.model('dealerhosp', new mongoose.Schema({
+  hospitalId: { type: String, required: true },
+  name: { type: String, required: true },
+  address: { type: String, required: true },
+  phoneNo: { type: String, required: true },
+  email: { type: String, required: true },
+}));
+
+// Inventory Schema
+const Inventory = dealerDB.model('Inventory', new mongoose.Schema({
+  medicineId: { type: String, required: true },
+  name: { type: String, required: true },
+  batchNumber: { type: String, required: true },
+  arrivalDate: { type: Date, required: true },
+  expiryDate: { type: Date, required: true },
+  cost: { type: Number, required: true },
+  quantity: { type: Number, required: true },
+}));
+
+// Orders Schema
+const Orders = dealerDB.model('Orders', new mongoose.Schema({
+  hospitalId: { type: String, required: true },
+  medicines: [
+      {
+          medicineId: { type: String, required: true },
+          quantity: { type: Number, required: true },
+      },
+  ],
+  orderDate: { type: Date, default: Date.now },
+  status: {
+      type: String,
+      enum: ['requested', 'acknowledged', 'out to delivery', 'confirmed', 'returned'],
+      default: 'requested',
+  },
+  price: { type: Number, required: true },
+}));
 
     console.log(`New database and collections created for dealer: dealer_${newDealer._id}`);
     res.status(201).json(newDealer);
