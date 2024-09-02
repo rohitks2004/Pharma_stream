@@ -6,7 +6,7 @@ exports.addToCart = async (req, res) => {
         const { startDate, endDate, drug } = req.body;
 
         
-        const response = await axios.post('http://127.0.0.1:5500/predict', {
+        const response = await axios.post('http://127.0.0.1:5000/predict', {
             start_date: startDate,
             end_date: endDate,
             drug: drug
@@ -17,10 +17,11 @@ exports.addToCart = async (req, res) => {
        
         
 
+        console.log("ghjk");
         
         const cartData = {
             medicines: predictions.map(prediction => ({
-                medicineId: prediction.medicine_id, 
+                medicineId: prediction.Drug, 
                 quantity: prediction.predicted_quantity
             }))
         };
@@ -30,6 +31,8 @@ exports.addToCart = async (req, res) => {
         res.status(201).json(savedCart);
     } catch (err) {
         res.status(500).json({ error: err.message });
+       // console.log(err);
+        
     }
 };
 exports.getCart = async (req, res) => {

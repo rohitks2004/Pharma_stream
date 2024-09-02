@@ -9,6 +9,7 @@ const inventorySchema = new mongoose.Schema({
     cost: { type: Number, required: true },
     quantity: { type: Number, required: true },
     
+    
 });
 
 const Inventory = mongoose.model('InventoryH', inventorySchema);
