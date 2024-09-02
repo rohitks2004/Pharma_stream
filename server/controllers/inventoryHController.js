@@ -12,7 +12,7 @@ exports.addInventory = async (req, res) => {
 
 exports.getInventories = async (req, res) => {
     try {
-        const inventories = await Inventory.find().populate('dealerId');
+        const inventories = await Inventory.find().populate();
         res.status(200).json(inventories);
     } catch (err) {
         res.status(500).json({ error: err.message });

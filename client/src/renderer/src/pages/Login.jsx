@@ -21,7 +21,7 @@ const Login = () => {
             email,password
           },{withCredentials:true}
         );
-        console.log(res.data);
+        dispatch(login(res.data))
         }catch(e){
           console.log(e);
         }
