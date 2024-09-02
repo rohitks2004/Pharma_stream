@@ -12,7 +12,7 @@ exports.addInventory = async (req, res) => {
 
 exports.getInventories = async (req, res) => {
     try {
-        const inventories = await Inventory.find().populate('dealerId');
+        const inventories = await Inventory.find().populate();
         res.status(200).json(inventories);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -40,7 +40,8 @@ exports.updateInventory = async (req, res) => {
 
 exports.deleteInventory = async (req, res) => {
     try {
-        await Inventory.findByIdAndDelete(req.params.id);
+       await Inventory.deleteOne({medicineId:req.params.id});
+
         res.status(204).json({ message: "Inventory deleted" });
     } catch (err) {
         res.status(500).json({ error: err.message });

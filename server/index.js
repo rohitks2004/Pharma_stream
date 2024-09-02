@@ -31,7 +31,7 @@ app.use('/api/cart',cartRoutes);
 app.use('/app/billing',billingRoutes);
 app.use('/api/cat',catRoutes);
 app.use('/api/dinventory',inventoryDRoutes);
-app.use('api/hinventory',inventoryHRoutes)
+app.use('/api/hinventory',inventoryHRoutes)
 
 
 
