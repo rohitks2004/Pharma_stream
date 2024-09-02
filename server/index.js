@@ -7,6 +7,8 @@ const dealerRoutes = require('./routes/dealerRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const cartRoutes=require("./routes/cartRoutes.js")
 const billingRoutes=require("./routes/billingRoutes.js")
+const inventoryDRoutes=require('./routes/inventoryDRoutes.js')
+const inventoryHRoutes=require('./routes/inventoryHRoutes.js')
 
 
 const app = express();
@@ -25,6 +27,9 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/cart',cartRoutes);
 app.use('/app/billing',billingRoutes);
+app.use('/api/dinventory',inventoryDRoutes);
+app.use('api/hinventory',inventoryHRoutes)
+
 
 
 const PORT = process.env.PORT || 5000;
