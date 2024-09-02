@@ -4,6 +4,10 @@ require('dotenv').config()
 const superLoginRoutes = require('./routes/superLoginRoutes');
 const hospitalRoutes = require('./routes/hospitalRoutes');
 const dealerRoutes = require('./routes/dealerRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const cartRoutes=require("./routes/cartRoutes.js")
+const billingRoutes=require("./routes/billingRoutes.js")
+
 
 const app = express();
 
@@ -17,6 +21,11 @@ app.use(express.json());
 app.use('/api/superlogin', superLoginRoutes);
 app.use('/api/hospital', hospitalRoutes);
 app.use('/api/dealer', dealerRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/cart',cartRoutes);
+app.use('/app/billing',billingRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 

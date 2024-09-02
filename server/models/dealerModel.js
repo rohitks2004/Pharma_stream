@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
-//import bcrypt from 'bcrypt';
 const bcrypt=require('bcrypt');
 const dealerSchema = new mongoose.Schema({
   dealerId: { type: String, default: uuidv4 },
@@ -10,6 +9,8 @@ const dealerSchema = new mongoose.Schema({
   password: { type: String, required: true },
   phoneno: { type: String, required: true },
 });
+
+
 dealerSchema.pre("save",async function ( next){
   if(!this.isModified("password")){
       next();
