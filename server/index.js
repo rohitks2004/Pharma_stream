@@ -1,5 +1,6 @@
 const express = require('express');
 const cors=require('cors')
+const helmet=require('helmet')
 const connectDB = require('./config/db.js');
 require('dotenv').config()
 const superLoginRoutes = require('./routes/superLoginRoutes');
@@ -14,13 +15,24 @@ const inventoryHRoutes=require('./routes/inventoryHRoutes.js')
 
 
 const app = express();
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", "http://localhost:8800"], // Allow connections to your API server
+      // Add other directives as necessary
+    },
+  })
+);
+
 app.use(cors({
-  origin:['http://localhost:8800',"http://localhost:5000"],
+  origin:'http://localhost:5173',
   methods:["GET","POST","PUT","DELETE"],
   credentials:true,
 
 }));
-// Connect to the database
+// Connect to the database  
 connectDB();
 
 // Middleware
