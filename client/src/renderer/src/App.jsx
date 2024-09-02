@@ -12,7 +12,8 @@ import MedicineGroups from "./pages/MedicineGroups";
 function App() {
   const user = useSelector((state) => state.userSlice.user);
   const location = useLocation();
-  const currentRoute = location.pathname.split("/")[1]; // Split by "/" and get the main path
+  const curRoute = location.pathname.split("/")[1] // Split by "/" and get the main path
+  const currentRoute = location.pathname.split("/").join(" "); // Split by "/" and get the main path
   const routeDesc = {
     dashboard: "A quick data overview of inventory.",
     inventory: "List of medicines available for sale.",
@@ -26,7 +27,7 @@ function App() {
   function Layout() {
     return user ? (
       <div className="layout">
-        <Sidebar />
+        <Sidebar curRoute={curRoute}/>
         <div className="right">
           <HeadBar />
           <Header heading={currentRoute} desc={routeDesc[currentRoute]} />
@@ -38,9 +39,10 @@ function App() {
     );
   }
 
-  useEffect(() => {
-    console.log(currentRoute);
-  }, [currentRoute]);
+  // useEffect(() => {
+  //   console.log(currentRoute);
+  //   console.log(curRoute);
+  // }, [currentRoute]);
 
   return (
     <Routes>
@@ -49,7 +51,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/reports" element={<h1>Report</h1>} />
         <Route path="/orders" element={<h1>Orders</h1>} />
-        <Route path="/inventory" element={<Inventory />} />
+        {/* <Route path="/inventory" element={<Inventory />} /> */}
         <Route path="/inventory/medicines" element={<Inventory />} />
         <Route path="/inventory/medicine-groups" element={<MedicineGroups />} />
         <Route path="/billing" element={<h1>Billing</h1>} />

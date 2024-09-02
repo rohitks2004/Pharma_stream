@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addMedicine, deleteMedicine } from '../redux/inventorySlice'; 
 import SearchBar from '../components/SearchBar';
+import moment from 'moment';
 
 const Inventory = () => {
   const dispatch = useDispatch();
+  const momentvar = moment();
   const medicines = useSelector((state) => state.inventory.medicines);
-  const [filteredMedicines, setFilteredMedicines] = useState(medicines);
   const [showForm, setShowForm] = useState(false);
   const [showDeleteForm, setShowDeleteForm] = useState(false);
+  const [filteredMedicines, setFilteredMedicines] = useState(medicines);
+  const [deleteInput, setDeleteInput] = useState('');
   const [newMedicine, setNewMedicine] = useState({
     name: '',
     medicineId: '',
     cost: '',
     quantity: '',
   });
-  const [deleteInput, setDeleteInput] = useState('');
+  useEffect(()=>{setFilteredMedicines(medicines)
+  },[medicines])
 
   const handleAddItemClick = () => setShowForm(true);
   const handleInputChange = (e) => setNewMedicine({ ...newMedicine, [e.target.name]: e.target.value });
@@ -121,6 +125,7 @@ const Inventory = () => {
             <tr>
               <th>Medicine Name</th>
               <th>Medicine ID</th>
+              <th>Expiry Date</th>
               <th>Stock in Qty</th>
               <th>Cost</th>
               <th>Action</th>
@@ -131,6 +136,7 @@ const Inventory = () => {
               <tr key={index}>
                 <td>{medicine.name}</td>
                 <td>{medicine.medicineId}</td>
+                <td>{momentvar.format("DD-MM-YYYY")}</td>
                 <td>{medicine.quantity}</td>
                 <td>{medicine.cost}</td>
                 <td>

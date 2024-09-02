@@ -39,9 +39,6 @@ const MedicineGroups = () => {
 
   return (
     <div className="medicine-groups-page">
-      <h2>Medicine Groups</h2>
-
-      {/* Search bar with actions */}
       <div className="group-actions">
         <SearchBar setItems={handleSearch} />
         <div className="action-buttons">

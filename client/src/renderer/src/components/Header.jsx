@@ -5,7 +5,7 @@ const Header = (props) => {
     
   return (
     <div className="page-head">
-            <h1 style={{"text-transform":"capitalize"}} ><Link to={"/"+props.heading}>{props.heading}</Link></h1>
+            <h1 style={{"textTransform":"capitalize"}} ><Link to={"/"+props.heading}>{props.heading}</Link></h1>
             <p>{props.desc}</p>
     </div>
   )
