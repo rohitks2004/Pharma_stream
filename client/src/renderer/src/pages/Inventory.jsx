@@ -24,7 +24,7 @@ const Inventory = () => {
   });
   useEffect(()=>{
     fetchmedicine()
-  },[])
+  },[medicines])
   const fetchmedicine = async ()=>{
     try{
       const res = await axios.get(
@@ -44,9 +44,9 @@ const Inventory = () => {
 
   const handleAddItemClick = () => setShowForm(showForm ? false: true);
   const handleInputChange = (e) => setNewMedicine({ ...newMedicine, [e.target.name]: e.target.value });
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async(e) => {
     e.preventDefault();
-    dispatch(addMedicine(newMedicine)); 
+    await dispatch(addMedicine(newMedicine)); 
     setNewMedicine({
       name: '',
       medicineId: '',
@@ -60,9 +60,9 @@ const Inventory = () => {
   };
   const handleDeleteButtonClick = () => setShowDeleteForm(showDeleteForm ? false : true);
   const handleDeleteInputChange = (e) => setDeleteInput(e.target.value);
-  const handleDeleteSubmit = (e) => {
+  const handleDeleteSubmit = async(e) => {
     e.preventDefault();
-    dispatch(deleteMedicine(deleteInput)); 
+    await dispatch(deleteMedicine(deleteInput)); 
     setDeleteInput('');
     setShowDeleteForm(false);
   };

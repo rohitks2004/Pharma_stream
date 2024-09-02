@@ -34,11 +34,9 @@ const inventorySlice = createSlice({
           medicine.medicineId !== action.payload
       );
       try{
-        console.log(action.payload)
-        const res = await axios.delete(
+        await axios.delete(
           "http://localhost:8800/api/hinventory/delete/"+action.payload
         )
-        console.log(res.data)
       }catch(e){
         console.log(e);
       }
