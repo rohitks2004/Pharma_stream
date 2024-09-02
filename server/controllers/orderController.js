@@ -1,4 +1,4 @@
-const Order = require('../../models/HospitalDB/ordersModel');
+const Order = require('../models/ordersModel');
 
 exports.placeOrder = async (req, res) => {
     try {

@@ -1,4 +1,4 @@
-const Billing = require('../../models/HospitalDB/billingModel');
+const Billing = require('../models/billingModel');
 
 exports.createBillingRecord = async (req, res) => {
     try {

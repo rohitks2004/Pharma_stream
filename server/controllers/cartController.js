@@ -1,4 +1,4 @@
-const Cart = require('../../models/HospitalDB/cartModel');
+const Cart = require('../models/cartModel');
 
 exports.addToCart = async (req, res) => {
     try {
