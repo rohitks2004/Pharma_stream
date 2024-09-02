@@ -1,4 +1,5 @@
 const express = require('express');
+const cors=require('cors')
 const connectDB = require('./config/db.js');
 require('dotenv').config()
 const superLoginRoutes = require('./routes/superLoginRoutes');
@@ -13,7 +14,12 @@ const inventoryHRoutes=require('./routes/inventoryHRoutes.js')
 
 
 const app = express();
+app.use(cors({
+  origin:['http://localhost:8800',"http://localhost:5000"],
+  methods:["GET","POST","PUT","DELETE"],
+  credentials:true,
 
+}));
 // Connect to the database
 connectDB();
 

@@ -15,9 +15,9 @@ exports.login = async(req,res)=>{
     if(!isMatch){
       return res.status(400).json({message:"invalid password"});
     }
-
-    const token = jwt.sign({email:superLogin.email,userType:"superAdmin"},'secret_token',{expiresIn:'24h'});
-    res.status(200).json({userType:"superAdmin",token});
+    const usertype = superLogin._doc.userType;
+    const token = jwt.sign({email:superLogin.email,userType:usertype},'secret_token',{expiresIn:'24h'});
+    res.status(200).json({userType:usertype,token});
   }
   catch(e){
     console.log(e);
