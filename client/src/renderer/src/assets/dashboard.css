@@ -1,0 +1,64 @@
+.dashboard{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.overview-container{
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    padding-left: 64px;
+}
+.overview{
+    border-radius: 8px;
+    height: 152px;
+    width: 212px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0 0 0;
+    justify-content: space-between;
+    h1{
+        font-size: 24px;
+        font-weight: bold;
+    }
+    h2{
+        font-size: 16px;
+    }
+    div{
+        border-radius:0 0 6px 6px;
+        color: var(--white);
+        background-color: red;
+        width: 100%;
+        height: 20px;
+        text-align: center;
+        padding:4px 0;
+    }
+}
+
+.inventory-overview{
+    border: 2px solid var(--blue);
+    div{
+        background-color: var(--blue);
+    }
+    
+}
+.available-overview{
+    div{
+        background-color: var(--green);
+    }
+    
+    border: 2px solid var(--green);
+}
+.shortage-overview{
+    div{
+        background-color: var(--red);
+    }
+    border: 2px solid var(--red) ;
+}

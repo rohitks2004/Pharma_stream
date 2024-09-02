@@ -1,0 +1,184 @@
+.sidebar {
+    width: 25vw;
+    height: 100vh;
+    /* border: 2px solid black; */
+    background-color: var(--emerald);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* position: fixed;
+    left: 0;
+    top: 0; */
+    padding: 0px 15px 10px 0px;
+    align-items: flex-start;
+    transition: 0.3s;
+}
+
+.sidebar-item.orders, /* Class to target Orders */
+.sidebar-item.dealer { /* Class to target Dealer */
+    border-bottom: 1px solid #7cc576; /* Add a line below these items */
+    width: calc(100% + 30px); /* Extend the border width */
+    margin-left: -15px; /* Adjust position to match padding */
+}
+
+
+.sidebar-header {
+    display: flex;
+    width: 100%;
+    background-color: var(--dark-green);
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 32px;
+    font-weight: bold;
+    padding:12px 0 12px 20px;
+}
+.sidebar-desc{
+    width: 100%;
+    display: flex;
+    padding: 0 0px 0 0;
+    justify-content: space-between;
+    align-items: center;
+}
+.logout{
+    padding: 8px 20px;
+    border-radius: 8px;
+    background-color: var(--emerald);
+    color: var(--red);
+    box-shadow:0 0 0 1.5px var(--red);
+    margin-top: 20vh;
+    margin-left: 25px;
+    &:hover{
+        background-color: var(--red);
+        color: var(--white);
+        box-shadow:0 0 4px 1px var(--white);
+    }
+    &:active{
+        color: var(--red);
+        background-color: var(--white);
+        box-shadow:0 0 10px 2px var(--red);
+        
+    }
+}
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    margin: 16px 8px;
+    padding-left: 15px;
+}
+
+.profile-img {
+    width: 35px; /* Adjusted image size */
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 8px; /* Reduced margin */
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align profile info to the left */
+}
+
+.profile-name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.profile-role {
+    font-size: 16px;
+    color: var(--green);
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    hr{
+        margin: 12px 0;
+        border: 1px solid var(--white) ;
+    }
+}
+
+.sidebar-item {
+    padding: 12px 4px; 
+    padding-left: 15px;
+    margin: 2px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the left */
+    cursor: pointer;
+    width: 100%; /* Ensure full width */
+    font-size: 16px;
+    font-weight: 500;
+    a{
+        color: var(--white);
+    }
+    
+}
+
+.sidebar-item i {
+    margin-right: 8px; /* Reduced margin */
+    font-size: 14px; /* Adjusted icon size */
+}
+.sidebar-item.active{
+    a{
+        color: var(--emerald);
+    }
+    background-color: var(--mint);
+    border-radius: 3px; 
+    padding-left: 8px;
+    transition: 0.3s ease;
+}
+.sidebar-item:hover {
+    color: var(--green);
+}
+
+.submenu {
+    width: calc(100% - 26px); 
+    padding-left: 40px;
+    list-style: none;
+    background-color: var(--black);
+    /* top:100%;
+    left:0;
+    z-index:10; */
+    display: block;
+    transition: 0.3s;
+    overflow:hidden;
+    position:relative;
+}
+
+.submenu li {
+    padding: 8px 0;
+    font-size: 16px; 
+    cursor: pointer;
+}
+
+.submenu li:hover {
+    color: #7cc576;
+}
+
+.notification-dot {
+    background-color: red;
+    width: 8px; /* Adjusted dot size */
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.sidebar-footer {
+    font-size: 12px;
+    color: #a4a6b3;
+    text-align: left; /* Align text to the left */
+    margin-top: 20px; /* Optional margin above the footer */
+    margin-top: auto; /* Pushes footer to the bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sidebar-footer span {
+    margin-bottom: 5px; /* Spacing between footer elements */
+}
