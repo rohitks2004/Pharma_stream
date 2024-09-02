@@ -1,23 +1,19 @@
-// models/data.js
 const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
-  datum: { type: Date, required: true },
-  M01AB: Number,
-  M01AE: Number,
-  N02BA: Number,
-  N02BE: Number,
-  N05B: Number,
-  N05C: Number,
-  R03: Number,
-  R06: Number,
-  Year: Number,
-  Month: Number,
-  Hour: Number,
-  WeekdayName: String,
+  datum: { type: String, required: true },
+  M01AB: { type: Number, default: 0 },
+  M01AE: { type: Number, default: 0 },
+  N02BA: { type: Number, default: 0 },
+  N02BE: { type: Number, default: 0 },
+  N05B: { type: Number, default: 0 },
+  N05C: { type: Number, default: 0 },
+  R03: { type: Number, default: 0 },
+  R06: { type: Number, default: 0 },
+  Year: { type: Number },
+  Month: { type: Number },
+  Hour: { type: Number },
+  Weekday: { type: String },
 });
 
-const Data = mongoose.model('Category', dataSchema);
-
-module.exports = Data;
-
+module.exports = mongoose.model('Category', dataSchema);

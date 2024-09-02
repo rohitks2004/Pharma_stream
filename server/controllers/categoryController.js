@@ -1,25 +1,46 @@
-// server.js
-const Data = require('../models/categoryModel'); // Adjust path as needed
-
-
+const Data = require('../models/categoryModel');
 
 // Helper function to generate aggregation pipeline
 const getWeeklyDataPipeline = (category) => [
+  {
+    $addFields: {
+      datum: {
+        $dateFromString: {
+          dateString: '$datum',
+          format: '%m-%d-%Y', // Adjust based on your actual date format
+          onError:null,
+          onNull:null,
+        },
+      },
+    },
+  },
   {
     $group: {
       _id: {
         week: { $isoWeek: '$datum' },
         year: { $year: '$datum' },
+        month: { $month: '$datum' },
+        day: { $dayOfMonth: '$datum' },
       },
       total: { $sum: `$${category}` },
     },
   },
   {
-    $sort: { '_id.year': 1, '_id.week': 1 },
+    $sort: { '_id.year': 1, '_id.month': 1, '_id.week': 1 ,'_id.day':1},
   },
 ];
 
-// Generic function to handle getting weekly data for any category
+// Helper function to format the response as per the required output
+const formatResponse = (results, category) => {
+  return results.map((item) => ({
+    Category: category,
+    DATE: `${item._id.month}-${item._id.day}-${item._id.year}`,
+    week: item._id.week,
+    total: item.total,
+  }));
+};
+
+// Generic controller function to get weekly data for a specific category
 const getWeeklyData = async (req, res) => {
   const { category } = req.params;
 
@@ -31,30 +52,65 @@ const getWeeklyData = async (req, res) => {
 
   try {
     const weekData = await Data.aggregate(getWeeklyDataPipeline(category));
-    res.json(weekData);
+    const formattedData = formatResponse(weekData, category);
+    res.json(formattedData);
   } catch (error) {
     res.status(500).send(error.message);
   }
 };
 
-// Separate functions for each category
-const getM01ABData = (req, res) => getWeeklyData({ ...req, params: { category: 'M01AB' } }, res);
-const getM01AEData = (req, res) => getWeeklyData({ ...req, params: { category: 'M01AE' } }, res);
-const getN02BAData = (req, res) => getWeeklyData({ ...req, params: { category: 'N02BA' } }, res);
-const getN02BEData = (req, res) => getWeeklyData({ ...req, params: { category: 'N02BE' } }, res);
-const getN05BData = (req, res) => getWeeklyData({ ...req, params: { category: 'N05B' } }, res);
-const getN05CData = (req, res) => getWeeklyData({ ...req, params: { category: 'N05C' } }, res);
-const getR03Data = (req, res) => getWeeklyData({ ...req, params: { category: 'R03' } }, res);
-const getR06Data = (req, res) => getWeeklyData({ ...req, params: { category: 'R06' } }, res);
+// Separate controller functions for each category
+const getWeeklyDataM01AB = async (req, res) => {
+  handleCategoryRequest(req, res, 'M01AB');
+};
+
+const getWeeklyDataM01AE = async (req, res) => {
+  handleCategoryRequest(req, res, 'M01AE');
+};
+
+const getWeeklyDataN02BA = async (req, res) => {
+  handleCategoryRequest(req, res, 'N02BA');
+};
+
+const getWeeklyDataN02BE = async (req, res) => {
+  handleCategoryRequest(req, res, 'N02BE');
+};
+
+const getWeeklyDataN05B = async (req, res) => {
+  handleCategoryRequest(req, res, 'N05B');
+};
+
+const getWeeklyDataN05C = async (req, res) => {
+  handleCategoryRequest(req, res, 'N05C');
+};
+
+const getWeeklyDataR03 = async (req, res) => {
+  handleCategoryRequest(req, res, 'R03');
+};
+
+const getWeeklyDataR06 = async (req, res) => {
+  handleCategoryRequest(req, res, 'R06');
+};
+
+// Helper function to handle requests for specific categories
+const handleCategoryRequest = async (req, res, category) => {
+  try {
+    const weekData = await Data.aggregate(getWeeklyDataPipeline(category));
+    const formattedData = formatResponse(weekData, category);
+    res.json(formattedData);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 
 module.exports = {
   getWeeklyData,
-  getM01ABData,
-  getM01AEData,
-  getN02BAData,
-  getN02BEData,
-  getN05BData,
-  getN05CData,
-  getR03Data,
-  getR06Data,
+  getWeeklyDataM01AB,
+  getWeeklyDataM01AE,
+  getWeeklyDataN02BA,
+  getWeeklyDataN02BE,
+  getWeeklyDataN05B,
+  getWeeklyDataN05C,
+  getWeeklyDataR03,
+  getWeeklyDataR06,
 };
