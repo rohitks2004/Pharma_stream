@@ -5,7 +5,8 @@
 @import './dashboard.css';
 @import "./iventory.css";
 @import "./head.css";
-@import "./MedicineGroups.css"
+@import "./MedicineGroups.css";
+@import "./Dealer.css"
 /* .poppins-thin {
     font-family: "Poppins", sans-serif;
     font-weight: 100;
