@@ -1,5 +1,5 @@
 import React from 'react'
-import { Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 ;('use client')
 
 
@@ -7,7 +7,7 @@ import { Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, X
 const ReportsAreaChart = ({data}) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
-    <AreaChart className='areachart' width={400} height={200} data={data}>
+    <BarChart className='areachart' width={400} height={200} data={data}>
       <YAxis />
       <XAxis 
       dataKey="DATE"
@@ -15,13 +15,13 @@ const ReportsAreaChart = ({data}) => {
       <Legend/>
       <Tooltip/>
       <CartesianGrid strokeDasharray="5 5" />
-      <Area
+      <Bar
        type="monotone"
        dataKey="total"
-       stroke="#0f282f" 
-      //  fill="#109cf1"
+      //  stroke="#0f282f" 
+       fill="#109cf1"
          />
-    </AreaChart>
+    </BarChart>
     </ResponsiveContainer>
   )
 }
