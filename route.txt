@@ -1,0 +1,8 @@
+http://localhost:8800/api/cat/M01AB
+http://localhost:8800/api/cat/M01AE
+http://localhost:8800/api/cat/N02BA
+http://localhost:8800/api/cat/N02BE
+http://localhost:8800/api/cat/N05B
+http://localhost:8800/api/cat/N05C
+http://localhost:8800/api/cat/R03
+http://localhost:8800/api/cat/R06

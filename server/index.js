@@ -3,6 +3,7 @@ const cors=require('cors')
 const helmet=require('helmet')
 const connectDB = require('./config/db.js');
 require('dotenv').config()
+const cors=require('cors')
 const superLoginRoutes = require('./routes/superLoginRoutes');
 const hospitalRoutes = require('./routes/hospitalRoutes');
 const dealerRoutes = require('./routes/dealerRoutes');
@@ -15,6 +16,7 @@ const inventoryHRoutes=require('./routes/inventoryHRoutes.js')
 
 
 const app = express();
+app.use(cors());
 
 app.use(
   helmet.contentSecurityPolicy({
@@ -42,7 +44,6 @@ app.use(express.json());
 app.use('/api/superlogin', superLoginRoutes);
 app.use('/api/hospital', hospitalRoutes);
 app.use('/api/dealer', dealerRoutes);
-app.use('/api/orders', orderRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/cart',cartRoutes);
 app.use('/app/billing',billingRoutes);
