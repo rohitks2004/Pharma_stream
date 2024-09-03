@@ -1,0 +1,73 @@
+.dealer-page {
+    padding: 20px;
+  }
+  
+  .dealer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-dealer-btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-dealer-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-dealer-form {
+    margin-bottom: 20px;
+  }
+  
+  .add-dealer-form input {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-dealer-form button {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-dealer-form button:hover {
+    background-color: #218838;
+  }
+  
+  .dealers-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .dealers-table th,
+  .dealers-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .delete-dealer-btn {
+    padding: 6px 12px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-dealer-btn:hover {
+    background-color: #c82333;
+  }
+  

@@ -1,35 +1,69 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import React, { useEffect } from "react";
+import { Route, Routes, Navigate, Outlet, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Login from "./pages/Login";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
+import Inventory from "./pages/Inventory";
+import Header from "./components/Header";
+import HeadBar from "./components/HeadBar";
+import MedicineGroups from "./pages/MedicineGroups";
+import Dealer from './pages/Dealer';
 
 function App() {
-  const ipcHandle = () => window.electron.ipcRenderer.send('ping')
+  const user = useSelector((state) => state.userSlice.user);
+  const location = useLocation();
+  const curRoute = location.pathname.split("/")[1] // Split by "/" and get the main path
+  const currentRoute = location.pathname.split("/").join(" "); // Split by "/" and get the main path
+  const routeDesc = {
+    dashboard: "A quick data overview of inventory.",
+    inventory: "List of medicines available for sale.",
+    reports: "Overall reports.",
+    orders: "Overall orders made.",
+    notifications: "",
+    dealers: "",
+    billing: ""
+  };
+
+  function Layout() {
+    return user ? (
+      <div className="layout">
+        <Sidebar curRoute={curRoute}/>
+        <div className="right">
+          <HeadBar />
+          <Header heading={currentRoute} desc={routeDesc[currentRoute]} />
+          <Outlet />
+        </div>
+      </div>
+    ) : (
+      <Navigate to="/login" /> // Correct path to `/login`
+    );
+  }
+
+  // useEffect(() => {
+  //   console.log(currentRoute);
+  //   console.log(curRoute);
+  // }, [currentRoute]);
 
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
-      <Versions></Versions>
-    </>
-  )
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/reports" element={<h1>Report</h1>} />
+        <Route path="/orders" element={<h1>Orders</h1>} />
+        {/* <Route path="/inventory" element={<Inventory />} /> */}
+        <Route path="/inventory/medicines" element={<Inventory />} />
+        <Route path="/inventory/medicine-groups" element={<MedicineGroups />} />
+        <Route path="/billing" element={<h1>Billing</h1>} />
+        <Route path="/notifications" element={<h1>Notifications</h1>} />
+        <Route path="/dealers" element={<Dealer />} />
+        <Route path="/hospitals" element={<h1>Hospital</h1>} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  );
 }
 
-export default App
-
+export default App;
