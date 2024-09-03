@@ -37,7 +37,7 @@ exports.addToCart = async (req, res) => {
 };
 exports.getCart = async (req, res) => {
     try {
-        const cart = await Cart.findById(req.params.id).populate('medicines.medicineId').populate('dealerPreferences');
+        const cart = await Cart.findById(req.params.id);
         res.status(200).json(cart);
     } catch (err) {
         res.status(500).json({ error: err.message });

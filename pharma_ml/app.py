@@ -60,7 +60,7 @@ def predict():
         drug = data['drug']
 
         prediction = predict_sales(start_date, end_date, drug)
-        return jsonify({'prediction': prediction})
+        return prediction
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
