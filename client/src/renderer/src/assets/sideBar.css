@@ -100,6 +100,9 @@
         margin: 12px 0;
         border: 1px solid var(--white) ;
     }
+    a{
+        color: var(--white);
+    }
 }
 
 .sidebar-item {
