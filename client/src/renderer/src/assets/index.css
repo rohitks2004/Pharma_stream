@@ -2,11 +2,12 @@
     margin: 0;
     padding: 0;
     user-select: none;
+    overflow-x: hidden;
   }
   body {
     font-family: "Poppins", sans-serif;
     background:var(--emerald);
-    overflow: hidden;
+    overflow-y:hidden;
   }
   a{
     text-decoration: none;
