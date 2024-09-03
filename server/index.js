@@ -3,7 +3,7 @@ const cors=require('cors')
 const helmet=require('helmet')
 const connectDB = require('./config/db.js');
 require('dotenv').config()
-const cors=require('cors')
+
 const superLoginRoutes = require('./routes/superLoginRoutes');
 const hospitalRoutes = require('./routes/hospitalRoutes');
 const dealerRoutes = require('./routes/dealerRoutes');

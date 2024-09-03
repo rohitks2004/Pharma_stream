@@ -35,7 +35,7 @@ const getWeeklyDataPipeline = (category) => {
           day: { $dayOfMonth: '$datum' },
         },
         total: { $sum: `$${category}` }, // Calculate total for the specified catego
-  },
+  }},
     {
       $sort: { '_id.year': 1, '_id.month': 1, '_id.week': 1, '_id.day': 1 }, // Sort by year, month, week, and day
     },
