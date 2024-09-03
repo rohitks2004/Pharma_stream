@@ -7,7 +7,7 @@ import { Area, AreaChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, X
 const ReportsAreaChart = ({data}) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
-    <AreaChart width={400} height={300} data={data}>
+    <AreaChart className='areachart' width={400} height={200} data={data}>
       <YAxis />
       <XAxis 
       dataKey="DATE"
