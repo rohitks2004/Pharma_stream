@@ -3,6 +3,7 @@ import userSlice from "./userSlice";
 import inventorySlice from "./inventorySlice";
 import medicineGroupSlice from "./medicineGroupSlice";
 import dealerSlice from './dealerSlice';
+import orderReducer from './OrderSlice';
 
 const store = configureStore({
     reducer: {
@@ -13,6 +14,8 @@ const store = configureStore({
         inventory:inventorySlice,
         medicineGroup:medicineGroupSlice,
         dealer: dealerSlice,
+        orders: orderReducer,
+
 
     }
 })
