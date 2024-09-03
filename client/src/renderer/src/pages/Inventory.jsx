@@ -1,36 +1,68 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMedicine, deleteMedicine } from '../redux/inventorySlice'; 
+import { addMedicine, addstate, deleteMedicine } from '../redux/inventorySlice'; 
 import SearchBar from '../components/SearchBar';
+import moment from 'moment';
+import axios from 'axios';
 
 const Inventory = () => {
   const dispatch = useDispatch();
   const medicines = useSelector((state) => state.inventory.medicines);
-  const [filteredMedicines, setFilteredMedicines] = useState(medicines);
   const [showForm, setShowForm] = useState(false);
   const [showDeleteForm, setShowDeleteForm] = useState(false);
+  const [filteredMedicines, setFilteredMedicines] = useState(medicines);
+  const [deleteInput, setDeleteInput] = useState('');
   const [newMedicine, setNewMedicine] = useState({
     name: '',
     medicineId: '',
+    category : '',
     cost: '',
+    arrivalDate: '',
+    expiryDate: '',
     quantity: '',
   });
-  const [deleteInput, setDeleteInput] = useState('');
+  useEffect(()=>{
+    fetchmedicine()
+  },[medicines])
+  const fetchmedicine = async ()=>{
+    try{
+      const res = await axios.get(
+        // "http://localhost:8800/api/superlogin/login"
+        "http://localhost:8800/api/hinventory/",
+        {withCredentials:true}
+      );
+      dispatch(addstate(res.data))
+      }catch(e){
+        console.log(e);
+      }
 
-  const handleAddItemClick = () => setShowForm(true);
+  }
+
+  useEffect(()=>{setFilteredMedicines(medicines)
+  },[medicines])
+
+  const handleAddItemClick = () => setShowForm(showForm ? false: true);
   const handleInputChange = (e) => setNewMedicine({ ...newMedicine, [e.target.name]: e.target.value });
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async(e) => {
     e.preventDefault();
-    dispatch(addMedicine(newMedicine)); 
-    setNewMedicine({ name: '', medicineId: '', cost: '', quantity: '' });
+    await dispatch(addMedicine(newMedicine)); 
+    setNewMedicine({
+      name: '',
+      medicineId: '',
+      category : '',
+      cost: '',
+      arrivalDate: '',
+      expiryDate: '',
+      quantity: '',
+    });
     setShowForm(false);
   };
-  const handleDeleteButtonClick = () => setShowDeleteForm(true);
+  const handleDeleteButtonClick = () => setShowDeleteForm(showDeleteForm ? false : true);
   const handleDeleteInputChange = (e) => setDeleteInput(e.target.value);
-  const handleDeleteSubmit = (e) => {
+  const handleDeleteSubmit = async(e) => {
     e.preventDefault();
-    dispatch(deleteMedicine(deleteInput)); 
+    await dispatch(deleteMedicine(deleteInput)); 
     setDeleteInput('');
     setShowDeleteForm(false);
   };
@@ -80,6 +112,32 @@ const Inventory = () => {
               required
             />
             <input
+              type='text'
+              name='category'
+              placeholder='Medicine group'
+              value={newMedicine.medicineGroup}
+              onChange={handleInputChange}
+              required
+            />
+             {/* arrivalDate: '',
+             expiryDate: '', */}
+            <input
+              type='date'
+              name='arrivalDate'
+              // placeholder='arrivalDate'
+              value={newMedicine.arrivalDate}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type='date'
+              name='expiryDate'
+              // placeholder='expiryDate'
+              value={newMedicine.expiryDate}
+              onChange={handleInputChange}
+              required
+            />
+            <input
               type='number'
               name='cost'
               placeholder='Cost'
@@ -105,7 +163,7 @@ const Inventory = () => {
           <form onSubmit={handleDeleteSubmit}>
             <input
               type='text'
-              placeholder='Enter Medicine Name or ID to Delete'
+              placeholder='Enter Medicine ID to Delete'
               value={deleteInput}
               onChange={handleDeleteInputChange}
               required
@@ -121,6 +179,8 @@ const Inventory = () => {
             <tr>
               <th>Medicine Name</th>
               <th>Medicine ID</th>
+              <th>Medicine group</th>
+              <th>Expiry Date</th>
               <th>Stock in Qty</th>
               <th>Cost</th>
               <th>Action</th>
@@ -131,8 +191,10 @@ const Inventory = () => {
               <tr key={index}>
                 <td>{medicine.name}</td>
                 <td>{medicine.medicineId}</td>
+                <td>{medicine.category}</td>
+                <td>{moment(medicine.expiryDate).format("DD-MM-YYYY")}</td>
                 <td>{medicine.quantity}</td>
-                <td>{medicine.cost}</td>
+                <td>{"₹"+medicine.cost.toFixed(2)}</td>
                 <td>
                   <button className='detail-button'>View Full Detail</button>
                 </td>
