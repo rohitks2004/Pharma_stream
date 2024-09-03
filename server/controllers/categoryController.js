@@ -1,39 +1,46 @@
-const Data = require('../models/categoryModel');
+const Data = require('../models/categoryModel'); // Import your Mongoose model
 
 // Helper function to generate aggregation pipeline
-const getWeeklyDataPipeline = (category) => [
-  {
-    $addFields: {
-      datum: {
-        $dateFromString: {
-          dateString: '$datum',
-          format: '%m-%d-%Y', // Adjust based on your actual date format
-          onError:null,
-          onNull:null,
+const getWeeklyDataPipeline = (category) => {
+  // Hardcode the reference date (08/10/2019) and calculate one month before
+  const referenceDate = new Date('2019-08-10'); // Use ISO format YYYY-MM-DD
+  const startDate = new Date(referenceDate);
+  startDate.setMonth(startDate.getMonth() - 1); // Subtract 1 month from the reference date
+
+  return [
+    {
+      $addFields: {
+        datum: {
+          $dateFromString: {
+            dateString: '$datum',
+            format: '%m-%d-%Y', // Adjust this to match your actual date format
+            onError: null,
+            onNull: null,
+          },
         },
       },
     },
-  },
-  {
-    $match: {
-      datum: { $ne: null },
-    },
-  },
-  {
-    $group: {
-      _id: {
-        week: { $isoWeek: '$datum' },
-        year: { $year: '$datum' },
-        month: { $month: '$datum' },
-        day: { $dayOfMonth: '$datum' },
+    {
+      $match: {
+        datum: { $ne: null }, // Ensure the converted date is not null
+        datum: { $gte: startDate, $lt: referenceDate }, // Match documents within the date range
       },
-      total: { $sum: `$${category}` },
     },
-  },
-  {
-    $sort: { '_id.year': 1, '_id.month': 1, '_id.week': 1 ,'_id.day':1},
-  },
-];
+    {
+      $group: {
+        _id: {
+          week: { $isoWeek: '$datum' },
+          year: { $year: '$datum' },
+          month: { $month: '$datum' },
+          day: { $dayOfMonth: '$datum' },
+        },
+        total: { $sum: `$${category}` }, // Calculate total for the specified catego
+  }},
+    {
+      $sort: { '_id.year': 1, '_id.month': 1, '_id.week': 1, '_id.day': 1 }, // Sort by year, month, week, and day
+    },
+  ];
+};
 
 // Helper function to format the response as per the required output
 const formatResponse = (results, category) => {
@@ -64,39 +71,6 @@ const getWeeklyData = async (req, res) => {
   }
 };
 
-// Separate controller functions for each category
-const getWeeklyDataM01AB = async (req, res) => {
-  handleCategoryRequest(req, res, 'M01AB');
-};
-
-const getWeeklyDataM01AE = async (req, res) => {
-  handleCategoryRequest(req, res, 'M01AE');
-};
-
-const getWeeklyDataN02BA = async (req, res) => {
-  handleCategoryRequest(req, res, 'N02BA');
-};
-
-const getWeeklyDataN02BE = async (req, res) => {
-  handleCategoryRequest(req, res, 'N02BE');
-};
-
-const getWeeklyDataN05B = async (req, res) => {
-  handleCategoryRequest(req, res, 'N05B');
-};
-
-const getWeeklyDataN05C = async (req, res) => {
-  handleCategoryRequest(req, res, 'N05C');
-};
-
-const getWeeklyDataR03 = async (req, res) => {
-  handleCategoryRequest(req, res, 'R03');
-};
-
-const getWeeklyDataR06 = async (req, res) => {
-  handleCategoryRequest(req, res, 'R06');
-};
-
 // Helper function to handle requests for specific categories
 const handleCategoryRequest = async (req, res, category) => {
   try {
@@ -108,6 +82,17 @@ const handleCategoryRequest = async (req, res, category) => {
   }
 };
 
+// Separate controller functions for each category
+const getWeeklyDataM01AB = (req, res) => handleCategoryRequest(req, res, 'M01AB');
+const getWeeklyDataM01AE = (req, res) => handleCategoryRequest(req, res, 'M01AE');
+const getWeeklyDataN02BA = (req, res) => handleCategoryRequest(req, res, 'N02BA');
+const getWeeklyDataN02BE = (req, res) => handleCategoryRequest(req, res, 'N02BE');
+const getWeeklyDataN05B = (req, res) => handleCategoryRequest(req, res, 'N05B');
+const getWeeklyDataN05C = (req, res) => handleCategoryRequest(req, res, 'N05C');
+const getWeeklyDataR03 = (req, res) => handleCategoryRequest(req, res, 'R03');
+const getWeeklyDataR06 = (req, res) => handleCategoryRequest(req, res, 'R06');
+
+// Exporting all controller functions
 module.exports = {
   getWeeklyData,
   getWeeklyDataM01AB,

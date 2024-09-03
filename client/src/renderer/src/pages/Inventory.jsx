@@ -81,7 +81,7 @@ const Inventory = () => {
   return (
     <div className='inventory'>
       <div className='header-section'>
-        <SearchBar setItems={handleSearch}/>
+        <SearchBar className='search-inventory' setItems={handleSearch}/>
         <div className='action-buttons'>
           <button className='add-item' onClick={handleAddItemClick}>
             + Add item
@@ -183,7 +183,7 @@ const Inventory = () => {
               <th>Expiry Date</th>
               <th>Stock in Qty</th>
               <th>Cost</th>
-              <th>Action</th>
+              {/* <th>Action</th> */}
             </tr>
           </thead>
           <tbody>
@@ -195,9 +195,9 @@ const Inventory = () => {
                 <td>{moment(medicine.expiryDate).format("DD-MM-YYYY")}</td>
                 <td>{medicine.quantity}</td>
                 <td>{"₹"+medicine.cost.toFixed(2)}</td>
-                <td>
+                {/* <td>
                   <button className='detail-button'>View Full Detail</button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
