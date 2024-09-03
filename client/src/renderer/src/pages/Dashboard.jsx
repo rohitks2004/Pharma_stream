@@ -3,6 +3,8 @@ import OverviewCard from '../components/OverviewCard'
 import Header from '../components/Header'
 import DashChart from '../components/charts/DashChart'
 import axios from 'axios'
+import Inventory from './Inventory'
+import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
     const [M01ABdata , setM01ABData] = useState([]);
@@ -69,6 +71,12 @@ const Dashboard = () => {
             data7={ R03data}
             data8={ R06data}
             />
+        </div>
+        <div className='dash-inventory'>
+            <Link to={'../inventory/medicines'}>
+                <p>view full inventory</p>
+            </Link>
+        <Inventory />
         </div>
     </div>
   )
