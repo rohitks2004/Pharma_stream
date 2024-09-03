@@ -3,11 +3,35 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   groups: [
     {
-      name: 'Cardiology',
+      name: 'M01AB',
       medicines: ['Aspirin', 'Beta Blocker', 'Nitroglycerin'],
     },
     {
-      name: 'Neurology',
+      name: 'M01AE',
+      medicines: ['Gabapentin', 'Carbamazepine', 'Topiramate'],
+    },
+    {
+      name: 'N02BA',
+      medicines: ['Gabapentin', 'Carbamazepine', 'Topiramate'],
+    },
+    {
+      name: 'N02BE',
+      medicines: ['Gabapentin', 'Carbamazepine', 'Topiramate'],
+    },
+    {
+      name: 'N05B',
+      medicines: ['Gabapentin', 'Carbamazepine', 'Topiramate'],
+    },
+    {
+      name: 'N05C',
+      medicines: ['Gabapentin', 'Carbamazepine', 'Topiramate'],
+    },
+    {
+      name: 'R03',
+      medicines: ['Gabapentin', 'Carbamazepine', 'Topiramate'],
+    },
+    {
+      name: 'R06',
       medicines: ['Gabapentin', 'Carbamazepine', 'Topiramate'],
     },
   ],
