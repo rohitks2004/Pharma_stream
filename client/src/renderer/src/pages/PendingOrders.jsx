@@ -12,7 +12,6 @@ const PendingOrders = () => {
 
   return (
     <div className="pending-orders">
-      <h2>Pending Orders</h2>
       <table className="pending-orders-table">
         <thead>
           <tr>
@@ -29,7 +28,7 @@ const PendingOrders = () => {
               <td>{order.id}</td>
               <td>{new Date(order.date).toLocaleDateString()}</td>
               <td>{order.status}</td>
-              <td>${order.total.toFixed(2)}</td>
+              <td>₹{order.total.toFixed(2)}</td>
               <td>
                 <button onClick={() => handleUpdateStatus(order.id, 'Completed')}>
                   Mark as Completed

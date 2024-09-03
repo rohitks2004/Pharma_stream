@@ -6,7 +6,6 @@ const OrderHistory = () => {
 
   return (
     <div className="order-history">
-      <h2>Order History</h2>
       <table className="order-history-table">
         <thead>
           <tr>
@@ -22,7 +21,7 @@ const OrderHistory = () => {
               <td>{order.id}</td>
               <td>{new Date(order.date).toLocaleDateString()}</td>
               <td>{order.status}</td>
-              <td>${order.total.toFixed(2)}</td>
+              <td>₹{order.total.toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
