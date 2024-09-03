@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import HeadBar from "./components/HeadBar";
 import MedicineGroups from "./pages/MedicineGroups";
 import Dealer from './pages/Dealer';
+import Reports from "./pages/Reports";
 
 function App() {
   const user = useSelector((state) => state.userSlice.user);
@@ -40,17 +41,17 @@ function App() {
     );
   }
 
-  // useEffect(() => {
-  //   console.log(currentRoute);
-  //   console.log(curRoute);
-  // }, [currentRoute]);
+  useEffect(() => {
+    console.log(currentRoute);
+    // console.log(curRoute);
+  }, [currentRoute]);
 
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/reports" element={<h1>Report</h1>} />
+        <Route path="/reports/sales-reports" element={<Reports/>} />
         <Route path="/orders" element={<h1>Orders</h1>} />
         {/* <Route path="/inventory" element={<Inventory />} /> */}
         <Route path="/inventory/medicines" element={<Inventory />} />

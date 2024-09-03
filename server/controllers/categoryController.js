@@ -15,6 +15,11 @@ const getWeeklyDataPipeline = (category) => [
     },
   },
   {
+    $match: {
+      datum: { $ne: null },
+    },
+  },
+  {
     $group: {
       _id: {
         week: { $isoWeek: '$datum' },
