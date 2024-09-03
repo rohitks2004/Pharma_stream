@@ -24,6 +24,6 @@ router.get('/R03', getWeeklyDataR03);
 router.get('/R06', getWeeklyDataR06);
 
 // Generic route for any category, can be removed if not needed
-router.get('/:category', getWeeklyData);
+// router.get('/:category', getWeeklyData);
 
 module.exports = router;

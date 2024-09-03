@@ -11,7 +11,7 @@ exports.addToCart = async (req, res) => {
             end_date: endDate,
             drug: drug
         });
-
+        console.log(response);
         const predictions = response.data; 
         console.log(predictions);
        
